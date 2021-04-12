@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Validator from '../../validator';
 import {
   Button,
   Input,
@@ -8,6 +9,20 @@ import {
 } from '@material-ui/core';
 
 export default function Registr(props) {
+  const [inputValue, setInputValue] = useState({
+
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const submitHandler = () => {
+    // валидация
+    const validator = new Validator();
+    console.log(validator)
+    
+  }
+  const changeHandler = e => setInputValue({ ...inputValue, [e.target.id]: e.target.value });
+
   return (
     <div className="auth_div blackShadow">
       <Typography className="auth_title" variant="h5" color="primary">
@@ -18,9 +33,12 @@ export default function Registr(props) {
           Логин
           </InputLabel>
         <Input
+          id="user_name"
           className="form_control"
           type="text"
           placeholder="Ваш логин"
+          onChange={changeHandler}
+          error="tst"
           required
         />
       </FormControl>
